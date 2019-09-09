@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Pertemuan03</string>
+    <string name="about">About</string>
+    <string name="teks_about_ada_disini">Teks about ada disini</string>
+    <string name="todo">TODO</string>
 </resources>

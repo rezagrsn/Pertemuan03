@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Pertemuan03_RelativeLayout extends AppCompatActivity {
+public class activity_pertemuan03__relative_layout extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

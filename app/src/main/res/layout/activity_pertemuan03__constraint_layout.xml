@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pertemuan03_ConstraintLayout">
+    tools:context=".activity_pertemuan03__constraint_layout">
 
     <ImageView
         android:id="@+id/imageView"
@@ -15,13 +15,14 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars[9]" />
+        tools:srcCompat="@tools:sample/avatars[9]"
+        android:contentDescription="@string/todo" />
 
     <Button
         android:id="@+id/btnAbout"
         android:layout_width="160dp"
         android:layout_height="45dp"
-        android:text="About"
+        android:text="@string/about"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.500"
