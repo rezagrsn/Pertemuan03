@@ -40,7 +40,7 @@ public class activity_pertemuan03__constraint_layout extends AppCompatActivity {
         Fragment fragment1 = fragmentManager.findFragmentByTag("fragOne");
 
         if (fragment1 == null) {
-            fragment1 = new FragmentOne();
+            fragment1 = new fragment_simple();
         }
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.mainFrag, fragment1, "fragOne");
@@ -56,7 +56,7 @@ public class activity_pertemuan03__constraint_layout extends AppCompatActivity {
         Fragment fragment2 = fragmentManager.findFragmentByTag("fragTwo");
 
         if (fragment2 == null) {
-            fragment2 = new FragmentTwo();
+            fragment2 = new fragment_simple_2();
         }
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.mainFrag, fragment2, "fragTwo");
