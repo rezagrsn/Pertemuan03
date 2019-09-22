@@ -40,7 +40,15 @@
         android:id="@+id/mainFrag"
         android:layout_width="match_parent"
         android:layout_height="550dp"
-        android:layout_gravity="top" />
+        android:layout_gravity="top" >
+
+        <TextView
+            android:id="@+id/txtWelcome"
+            android:layout_width="411dp"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:text="Welcome, " />
+    </FrameLayout>
 
     <Button
         android:id="@+id/btnAbout"

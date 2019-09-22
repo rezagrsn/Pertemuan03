@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class activity_pertemuan03__constraint_layout extends AppCompatActivity {
     private Button btnAbout;
@@ -17,6 +18,10 @@ public class activity_pertemuan03__constraint_layout extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pertemuan03__constraint_layout);
+        String username = getIntent().getStringExtra("Username");
+
+        TextView tv = findViewById(R.id.txtWelcome);
+        tv.setText(username);
 
         btnAbout = findViewById(R.id.btnAbout);
         btnAbout.setOnClickListener(new View.OnClickListener() {

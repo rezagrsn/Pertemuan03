@@ -32,7 +32,12 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Password kosong",Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        openActivityConstraintLayout();
+                        EditText a = findViewById(R.id.Email);
+                        String str = a.getText().toString();
+
+                        Intent i = new Intent(MainActivity.this, activity_pertemuan03__constraint_layout.class);
+                        i.putExtra("Username", str);
+                        startActivity(i);
                     }
                 }
                 else {
