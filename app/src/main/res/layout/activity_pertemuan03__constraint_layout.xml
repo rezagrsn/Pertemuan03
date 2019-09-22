@@ -20,8 +20,7 @@
             android:background="@color/colorPrimary"
             android:onClick="loadFragmentOne"
             android:text="Tab 1"
-            android:textColor="#FFFFFF"
-            tools:ignore="ButtonStyle" />
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/btnTab2"
@@ -54,6 +53,13 @@
             android:layout_height="match_parent"
             android:layout_margin="15dp"
             android:text="" />
+
+        <Switch
+            android:id="@+id/txtState"
+            android:layout_width="match_parent"
+            android:layout_height="135dp"
+            android:layout_margin="40dp"
+            android:text="WiFi is OFF" />
     </FrameLayout>
 
     <Button
