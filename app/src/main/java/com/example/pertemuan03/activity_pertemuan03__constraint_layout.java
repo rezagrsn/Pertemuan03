@@ -96,8 +96,10 @@ public class activity_pertemuan03__constraint_layout extends AppCompatActivity {
         }
     };
 
+    @SuppressWarnings("deprecation")
     public void setNotification(Context context, String txt){
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+        NotificationCompat.Builder builder;
+        builder = new NotificationCompat.Builder(context);
         builder.setSmallIcon(R.drawable.ic_priority_high_black_24dp);
         builder.setContentTitle("Notification!");
         builder.setContentText(txt);
@@ -191,9 +193,7 @@ public class activity_pertemuan03__constraint_layout extends AppCompatActivity {
                 @Override
                 public void run() {
                     Toast.makeText(getApplicationContext(),"Ini Toast setiap 3 detik!", Toast.LENGTH_SHORT).show();
-
                 }
-
             });
         }
 
