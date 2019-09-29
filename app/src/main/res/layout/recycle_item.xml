@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayoutLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:padding="10dp" >
+
+    <ImageView
+        android:id="@+id/gambar"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:contentDescription="@string/todo"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/keterangan"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@id/gambar"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        android:text="@string/description"
+        android:textSize="12sp"
+        tools:ignore="ObsoleteLayoutParam" />
+
+    <TextView
+        android:id="@+id/judul"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_toRightOf="@id/gambar"
+        android:gravity="center_vertical"
+        android:text="@string/example_application"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        tools:ignore="ObsoleteLayoutParam" />
+
+</RelativeLayoutLayout>

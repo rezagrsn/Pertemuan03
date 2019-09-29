@@ -1,10 +1,19 @@
 <resources>
     <string name="app_name">Pertemuan03</string>
-    <string name="about">About</string>
     <string name="teks_about_ada_disini">Teks about ada disini</string>
     <string name="todo">TODO</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="added_fragment">added_fragment</string>
+    <string name="cancel_job_schedule">Cancel Job Schedule</string>
+    <string name="start_job_schedule">Start Job Schedule</string>
+    <string name="about">About</string>
+    <string name="user">User</string>
+    <string name="welcome">Welcome:</string>
+    <string name="tab_2">Tab 2</string>
+    <string name="todo">TODO</string>
+    <string name="description">Description</string>
+    <string name="example_application">Example application</string>
+    <string name="tab_1">Tab 1</string>
 </resources>

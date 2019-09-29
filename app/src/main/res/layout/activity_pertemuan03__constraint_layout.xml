@@ -19,8 +19,9 @@
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:onClick="loadFragmentOne"
-            android:text="Tab 1"
-            android:textColor="#FFFFFF" />
+            android:text="@string/tab_1"
+            android:textColor="#FFFFFF"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnTab2"
@@ -30,8 +31,9 @@
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:onClick="loadFragmentTwo"
-            android:text="Tab 2"
-            android:textColor="#FFFFFF" />
+            android:text="@string/tab_2"
+            android:textColor="#FFFFFF"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
 
@@ -42,14 +44,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:text="Welcome:" />
+        android:text="@string/welcome" />
 
     <TextView
         android:id="@+id/txtUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="User" />
+        android:text="@string/user" />
 
     <FrameLayout
         android:id="@+id/mainFrag"
@@ -67,9 +69,9 @@
         <Button
             android:id="@+id/btnAbout"
             android:layout_width="110dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
-            android:text="About" />
+            android:text="@string/about" />
 
     </LinearLayout>
 
@@ -82,21 +84,22 @@
         <Button
             android:id="@+id/button"
             android:layout_width="110dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:onClick="scheduleJob"
-            android:text="Start Job Schedule"
-            />
+            android:text="@string/start_job_schedule"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="110dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:onClick="cancelJob"
-            android:text="Cancel Job Schedule" />
+            android:text="@string/cancel_job_schedule"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 
 </LinearLayout>
