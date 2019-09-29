@@ -29,26 +29,24 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (Email.getText().toString().trim().matches(email_pattern)){
                     if (Pass.getText().toString().isEmpty()){
-                        Toast.makeText(getApplicationContext(),"Password kosong",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Password is empty !",Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        EditText a = findViewById(R.id.Email);
-                        String str = a.getText().toString();
-
-                        Intent i = new Intent(MainActivity.this, activity_pertemuan03__constraint_layout.class);
-                        i.putExtra("Username", str);
-                        startActivity(i);
+                        openActivityConstraintLayout();
                     }
                 }
                 else {
-                    Toast.makeText(getApplicationContext(),"Masukkan email and password!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Incorrect email and password !",Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    private void openActivityConstraintLayout() {
+    public void openActivityConstraintLayout() {
+        Bundle bundle = new Bundle();
+        bundle.putString("infoUsername", Email.getText().toString());
         Intent intent = new Intent(this, activity_pertemuan03__constraint_layout.class);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 }

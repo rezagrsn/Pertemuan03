@@ -1,12 +1,16 @@
 package com.example.pertemuan03;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.View;
@@ -17,42 +21,16 @@ import android.widget.TextView;
 
 public class activity_pertemuan03__constraint_layout extends AppCompatActivity {
     private Button btnAbout;
-    private Switch wifiSwitch;
-    private WifiManager wifiManager;
+    private TextView txtUsername;
+    private WifiManager WifiManager;
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pertemuan03__constraint_layout);
-        String username = getIntent().getStringExtra("Username");
 
-        TextView tv = findViewById(R.id.txtWelcome);
-        tv.setText(username);
-
-        wifiSwitch = findViewById(R.id.txtState);
-        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-
-        wifiSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    wifiManager.setWifiEnabled(true);
-                    wifiSwitch.setText("WiFi is ON");
-                } else {
-                    wifiManager.setWifiEnabled(false);
-                    wifiSwitch.setText("WiFi is OFF");
-                }
-            }
-        });
-
-        if (wifiManager.isWifiEnabled()) {
-            wifiSwitch.setChecked(true);
-            wifiSwitch.setText("WiFi is ON");
-        } else {
-            wifiSwitch.setChecked(false);
-            wifiSwitch.setText("WiFi is OFF");
-        }
-
+        txtUsername = findViewById((R.id.txtUsername));
         btnAbout = findViewById(R.id.btnAbout);
         btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +38,57 @@ public class activity_pertemuan03__constraint_layout extends AppCompatActivity {
                 openActivityRelativeLayout();
             }
         });
+
+        WifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+
+        if(getIntent().getExtras()!=null){
+            Bundle bundle = getIntent().getExtras();
+            txtUsername.setText(bundle.getString("infoUsername"));
+        }else{
+            txtUsername.setText(getIntent().getStringExtra("infoUsername"));
+        }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter intentFilter = new IntentFilter(android.net.wifi.WifiManager.WIFI_STATE_CHANGED_ACTION);
+        registerReceiver(wifiStateReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(wifiStateReceiver);
+    }
+
+    private BroadcastReceiver wifiStateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int wifiStateExtra = intent.getIntExtra(android.net.wifi.WifiManager.EXTRA_WIFI_STATE, android.net.wifi.WifiManager.WIFI_STATE_UNKNOWN);
+
+            switch (wifiStateExtra){
+                case android.net.wifi.WifiManager.WIFI_STATE_ENABLED:
+                    setNotification(context, "Connected");
+                    break;
+                case android.net.wifi.WifiManager.WIFI_STATE_DISABLED:
+                    setNotification(context, "Disconnected");
+                    break;
+            }
+        }
+    };
+
+    public void setNotification(Context context, String txt){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+        builder.setSmallIcon(R.drawable.ic_priority_high_black_24dp);
+        builder.setContentTitle("Notification!");
+        builder.setContentText(txt);
+        builder.setAutoCancel(true);
+
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        assert notificationManager != null;
+        notificationManager.notify(0, builder.build());
     }
 
     public void openActivityRelativeLayout(){
