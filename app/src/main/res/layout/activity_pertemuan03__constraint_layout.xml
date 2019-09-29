@@ -54,7 +54,7 @@
     <FrameLayout
         android:id="@+id/mainFrag"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="300dp"
         android:layout_gravity="top" >
     </FrameLayout>
 
@@ -66,8 +66,8 @@
 
         <Button
             android:id="@+id/btnAbout"
-            android:layout_width="130dp"
-            android:layout_height="60dp"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:text="About" />
 
@@ -81,8 +81,8 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="130dp"
-            android:layout_height="60dp"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:onClick="scheduleJob"
@@ -91,8 +91,8 @@
 
         <Button
             android:id="@+id/button2"
-            android:layout_width="130dp"
-            android:layout_height="60dp"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:onClick="cancelJob"
