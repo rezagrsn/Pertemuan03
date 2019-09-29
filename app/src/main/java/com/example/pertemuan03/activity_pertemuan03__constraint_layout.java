@@ -1,29 +1,46 @@
 package com.example.pertemuan03;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationManager;
+import android.app.job.JobInfo;
+import android.app.job.JobInfo.Builder;
+import android.app.job.JobScheduler;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class activity_pertemuan03__constraint_layout extends AppCompatActivity {
     private Button btnAbout;
     private TextView txtUsername;
     private WifiManager WifiManager;
     private static final String TAG = "MainActivity";
+    public static final long INTERVAL = 3000;
+    private Handler mHandler = new Handler();
+    private Timer mTimer = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,5 +144,58 @@ public class activity_pertemuan03__constraint_layout extends AppCompatActivity {
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void scheduleJob(View v) {
+        @SuppressLint("JobSchedulerService") ComponentName componentName = new ComponentName(this, MyJobService.class);
+        Builder builder = new Builder(123, componentName);
+        builder.setPersisted(true);
+        builder.setPeriodic(15 * 60 * 1000);
+        JobInfo info;
+        info = builder
+                .build();
+
+        JobScheduler scheduler;
+        scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+        assert scheduler != null;
+        int resultCode;
+        resultCode = scheduler.schedule(info);
+        if (resultCode == JobScheduler.RESULT_SUCCESS) {
+            Log.d(TAG, "Job scheduled");
+        } else {
+            Log.d(TAG, "Job scheduling failed");
+        }
+        if (mTimer!=null) {
+            mTimer.cancel();
+        }
+        else
+            mTimer = new Timer();
+
+        mTimer.scheduleAtFixedRate(new TimeDisplayToast(),0,INTERVAL);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void cancelJob(View v) {
+        JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+        assert scheduler != null;
+        scheduler.cancel(123);
+        Log.d(TAG, "Job cancelled");
+    }
+
+    private class TimeDisplayToast extends TimerTask {
+
+        @Override
+        public void run() {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getApplicationContext(),"Ini Toast setiap 3 detik!", Toast.LENGTH_SHORT).show();
+
+                }
+
+            });
+        }
+
     }
 }
