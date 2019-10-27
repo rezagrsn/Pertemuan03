@@ -17,15 +17,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity_pertemuan03__constraint_layout"></activity>
+        <activity android:name=".ActivityDatabase" />
+        <activity android:name=".activity_pertemuan03__constraint_layout" />
         <activity android:name=".activity_pertemuan03__relative_layout" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-    </application>
+        </application>
+
+        <service
+            android:name=".MyJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            tools:ignore="WrongManifestParent" />
+
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"
+        tools:ignore="ManifestOrder" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
 </manifest>
