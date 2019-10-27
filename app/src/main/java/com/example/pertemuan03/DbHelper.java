@@ -2,6 +2,8 @@ package com.example.pertemuan03;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -30,7 +32,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // TODO Auto-generated method stub
         final String SQL = "CREATE TABLE "+ CONTACTS_TABLE_NAME+"("+
                 CONTACTS_COLUMN_NIM+" TEXT NOT NULL PRIMARY KEY, "+CONTACTS_COLUMN_NAMA+" TEXT NOT NULL, "+CONTACTS_COLUMN_NOHP+" TEXT NOT NULL)";
         db.execSQL(SQL);
@@ -38,7 +39,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // TODO Auto-generated method stub
         db.execSQL("DROP TABLE IF EXISTS mahasiswa");
         onCreate(db);
     }
@@ -55,14 +55,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public Cursor getData(int nim) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from mahasiswa where nim="+nim+"", null );
-        return res;
+        return db.rawQuery( "select * from mahasiswa where nim="+nim+"", null );
     }
 
     public int numberOfRows(){
         SQLiteDatabase db = this.getReadableDatabase();
-        int numRows = (int) DatabaseUtils.queryNumEntries(db, CONTACTS_TABLE_NAME);
-        return numRows;
+        return (int) DatabaseUtils.queryNumEntries(db, CONTACTS_TABLE_NAME);
     }
 
     public boolean updateContact (String nim, String nama, String nohp) {
@@ -82,12 +80,12 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<String> getAllCotacts() {
-        ArrayList<String> array_list = new ArrayList<String>();
+        ArrayList<String> array_list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from mahasiswa", null );
+        @SuppressLint("Recycle") Cursor res =  db.rawQuery( "select * from mahasiswa", null );
         res.moveToFirst();
 
-        while(res.isAfterLast() == false){
+        while(!res.isAfterLast()){
             array_list.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_NAMA)));
             res.moveToNext();
         }
