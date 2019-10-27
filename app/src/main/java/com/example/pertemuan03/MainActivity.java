@@ -2,9 +2,13 @@ package com.example.pertemuan03;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,6 +19,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText Pass;
     String email_pattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
+    public static final String MyPREFERENCES = "MyPrefs";
+    public static final String emailKey = "emailKey";
+
+    SharedPreferences sharedpreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
         Pass = findViewById(R.id.Pass);
         LoginBtn = findViewById(R.id.LoginBtn);
 
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        System.out.println("avaiable LOGIN Email : "+sharedpreferences.getString(emailKey, new String()));
+
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Password is empty !",Toast.LENGTH_SHORT).show();
                     }
                     else{
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        editor.putString(emailKey, Email.getText().toString());
+                        editor.commit();
                         openActivityConstraintLayout();
                     }
                 }
